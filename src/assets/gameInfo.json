@@ -1,0 +1,31 @@
+{
+  "specifications": [
+    "Choose 5 numbers from 1 to 39.",
+    "Prizes are awarded for 2, 3, 4, and 5 correct guesses.",
+    "Each game costs 500 credits (akcse)."
+  ],
+  "userFeatures": [
+    "Players can enter a name.",
+    "Starting balance is 10,000 credits.",
+    "Player's name and balance persist across sessions.",
+    "Players can view their submitted tickets in the order they were submitted.",
+    "After the draw, players can check their ticket results and winnings.",
+    "The list can be sorted by the number of correct guesses.",
+    "Includes a summary of all winnings.",
+    "Experience the excitement of predicting lottery numbers and winning prizes!"
+  ],
+  "operatorFeatures": [
+    "Operator starts with a balance of 0 credits.",
+    "Operator's balance persists across sessions.",
+    "Simulate additional players by generating a specified number of tickets with random numbers.",
+    "View a list of all submitted tickets, distinguishing between player and generated tickets.",
+    "Initiate the draw, updating player balances and operator profits.",
+    "Display a report with detailed results, including the number of winning tickets and total revenue."
+  ],
+  "enhancedFeatures": [
+    "Track the number of correct guesses and the corresponding prize for each ticket.",
+    "Sort the list based on various criteria.",
+    "Start a new round, resetting the game to its initial state while retaining player and operator balances.",
+    "Start a new game, returning the platform to its original state."
+  ]
+}
