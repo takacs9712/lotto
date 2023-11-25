@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useLottoInfo from "./useLottoInfo";
 import usePlayerInfo from "./usePlayerInfo";
+
+import { prizeData } from "../../utils/constants";
 
 const useGameLogic = () => {
   const { playerName, playerBalance, setPlayerName, setPlayerBalance } =
@@ -8,7 +10,6 @@ const useGameLogic = () => {
 
   const {
     selectedNumbers,
-    lottoNumbers,
     prize,
     ticketList,
     generatedNumbers,
@@ -16,17 +17,12 @@ const useGameLogic = () => {
     setHasResult,
     setSelectedNumbers,
     setGeneratedNumbers,
-    setLottoNumbers,
     setPrize,
     setTicketList,
   } = useLottoInfo();
 
   const [numbersGenerated, setNumbersGenerated] = useState(false);
   const [isGeneratingNumbers, setIsGeneratingNumbers] = useState(false);
-
-  useEffect(() => {
-    setLottoNumbers(generateRandomNumbers());
-  }, []);
 
   const generateRandomNumbers = () => {
     const numbers = [];
@@ -51,49 +47,30 @@ const useGameLogic = () => {
       return;
     }
 
+    const tmp = generateRandomNumbers();
+    setGeneratedNumbers(tmp);
+
     if (
       playerBalance >= 500 &&
       selectedNumbers.length === 5 &&
       !hasResult &&
       !numbersGenerated
     ) {
-      const matchingNumbers = selectedNumbers.filter((num) =>
-        lottoNumbers.some(
-          (lottoNum) =>
-            lottoNum === num &&
-            lottoNumbers.filter((n) => n === num).length === 1
-        )
-      );
+      const matchingNumbersCount = selectedNumbers.filter((num) =>
+        tmp.includes(num)
+      ).length;
 
-      let currentPrize = 0;
-
-      switch (matchingNumbers.length) {
-        case 2:
-          currentPrize = 400;
-          break;
-        case 3:
-          currentPrize = 600;
-          break;
-        case 4:
-          currentPrize = 1000;
-          break;
-        case 5:
-          currentPrize = 10000;
-          break;
-        default:
-          currentPrize = 0;
-      }
+      const currentPrize = prizeData[matchingNumbersCount] || 0;
 
       const newTicket = {
         numbers: selectedNumbers,
-        matchingNumbers: matchingNumbers.length,
+        matchingNumbers: matchingNumbersCount,
         prize: currentPrize,
       };
 
       setTicketList([...ticketList, newTicket]);
 
       setPlayerBalance(playerBalance + currentPrize - 500);
-      setGeneratedNumbers(generateRandomNumbers());
       setHasResult(true);
       setSelectedNumbers([]);
       setIsGeneratingNumbers(true);
@@ -113,7 +90,6 @@ const useGameLogic = () => {
     playerName,
     playerBalance,
     selectedNumbers,
-    lottoNumbers,
     prize,
     ticketList,
     generatedNumbers,
@@ -123,7 +99,6 @@ const useGameLogic = () => {
     setPlayerBalance,
     setSelectedNumbers,
     setGeneratedNumbers,
-    setLottoNumbers,
     setPrize,
     setTicketList,
     handleSelectNumber,
