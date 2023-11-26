@@ -1,31 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useCookieContext } from "../../context/Context";
-
-// const usePlayerInfo = () => {
-//   const { playerName: routePlayerName } = useParams();
-//   const { playerName: contextPlayerName } = useCookieContext();
-//   const [playerName, setPlayerName] = useState(
-//     routePlayerName || contextPlayerName || ""
-//   );
-//   const [playerBalance, setPlayerBalance] = useState(10000);
-
-//   useEffect(() => {
-//     if (contextPlayerName) {
-//       setPlayerName(contextPlayerName);
-//     }
-//   }, [contextPlayerName]);
-
-//   return {
-//     playerName,
-//     playerBalance,
-//     setPlayerName,
-//     setPlayerBalance,
-//   };
-// };
-
-// export default usePlayerInfo;
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCookieContext } from "../../context/Context";
@@ -36,13 +8,17 @@ const usePlayerInfo = () => {
     playerName: contextPlayerName,
     playerBalance,
     prize,
+    totalPrize,
     updatePlayerBalance,
     updatePrize,
+    updateTotalPrize,
   } = useCookieContext();
   const [playerName, setPlayerName] = useState(
     routePlayerName || contextPlayerName || ""
   );
-  const [localPlayerBalance, setLocalPlayerBalance] = useState(10000);
+  const [localPlayerBalance, setLocalPlayerBalance] = useState(
+    playerBalance !== undefined ? playerBalance : 10000
+  );
 
   useEffect(() => {
     if (contextPlayerName) {
@@ -51,7 +27,7 @@ const usePlayerInfo = () => {
   }, [contextPlayerName]);
 
   useEffect(() => {
-    if (playerBalance) {
+    if (playerBalance !== undefined) {
       setLocalPlayerBalance(playerBalance);
     }
   }, [playerBalance]);
@@ -65,9 +41,11 @@ const usePlayerInfo = () => {
     playerName,
     playerBalance: localPlayerBalance,
     prize,
+    totalPrize,
     setPlayerName,
     setBalance,
     updatePrize,
+    updateTotalPrize,
   };
 };
 

@@ -7,11 +7,13 @@ export const CookieProvider = ({ children }) => {
   const [playerName, setPlayerName] = useState("");
   const [playerBalance, setPlayerBalance] = useState(0);
   const [prize, setPrize] = useState(0);
+  const [totalPrize, setTotalPrize] = useState(0);
 
   useEffect(() => {
     const storedName = Cookies.get("playerName");
     const storedBalance = Cookies.get("playerBalance");
     const storedPrize = Cookies.get("prize");
+    const storedTotalPrize = Cookies.get("totalPrize");
 
     if (storedName) {
       setPlayerName(storedName);
@@ -21,6 +23,9 @@ export const CookieProvider = ({ children }) => {
     }
     if (storedPrize) {
       setPrize(parseFloat(storedPrize));
+    }
+    if (storedTotalPrize) {
+      setTotalPrize(parseFloat(storedTotalPrize));
     }
   }, []);
 
@@ -39,15 +44,22 @@ export const CookieProvider = ({ children }) => {
     Cookies.set("prize", prizeValue, { expires: 365 });
   };
 
+  const updateTotalPrize = (totalPrizeValue) => {
+    setTotalPrize(totalPrizeValue);
+    Cookies.set("totalPrize", totalPrizeValue, { expires: 365 });
+  };
+
   return (
     <CookieContext.Provider
       value={{
         playerName,
         playerBalance,
         prize,
+        totalPrize,
         updatePlayerName,
         updatePlayerBalance,
         updatePrize,
+        updateTotalPrize,
       }}
     >
       {children}

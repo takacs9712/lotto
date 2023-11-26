@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useLottoInfo from "./useLottoInfo";
 import usePlayerInfo from "./usePlayerInfo";
-
+import Cookies from "js-cookie";
 import { prizeData } from "../../utils/constants";
 
 const useGameLogic = () => {
@@ -9,9 +9,11 @@ const useGameLogic = () => {
     playerName: contextPlayerName,
     playerBalance: contextPlayerBalance,
     prize: contextPrize,
+    totalPrize: contextTotalPrize,
     setPlayerName,
     setBalance: setPlayerBalanceContext,
     updatePrize,
+    updateTotalPrize,
   } = usePlayerInfo();
 
   const {
@@ -29,6 +31,13 @@ const useGameLogic = () => {
 
   const [numbersGenerated, setNumbersGenerated] = useState(false);
   const [isGeneratingNumbers, setIsGeneratingNumbers] = useState(false);
+
+  useEffect(() => {
+    const storedTotalPrize = Cookies.get("totalPrize");
+    if (storedTotalPrize) {
+      updateTotalPrize(parseFloat(storedTotalPrize));
+    }
+  }, [updateTotalPrize]);
 
   const generateRandomNumbers = () => {
     const numbers = [];
@@ -82,8 +91,11 @@ const useGameLogic = () => {
       setIsGeneratingNumbers(true);
       setNumbersGenerated(true);
 
-      // Update the prize in the player context
       updatePrize(contextPrize + currentPrize);
+      updateTotalPrize(contextTotalPrize + currentPrize);
+
+      const totalPrize = contextTotalPrize + currentPrize;
+      Cookies.set("totalPrize", totalPrize, { expires: 365 });
     } else {
       alert("Please select exactly 5 numbers to generate your lottery ticket.");
     }
@@ -101,6 +113,7 @@ const useGameLogic = () => {
     selectedNumbers,
     prize,
     ticketList,
+    totalPrize: contextTotalPrize,
     generatedNumbers,
     hasResult,
     setHasResult,

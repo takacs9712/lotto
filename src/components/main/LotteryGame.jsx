@@ -7,19 +7,14 @@ const Lottokeeper = () => {
     playerName,
     playerBalance,
     selectedNumbers,
-    prize,
     ticketList,
+    totalPrize,
     generatedNumbers,
     hasResult,
     handleSelectNumber,
     handleGenerateNumbers,
     handleNewTicket,
   } = useGameLogic();
-
-  const totalPrize = ticketList.reduce(
-    (total, ticket) => total + ticket.prize,
-    0
-  );
 
   return (
     <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
