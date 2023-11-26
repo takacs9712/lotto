@@ -16,6 +16,11 @@ const Lottokeeper = () => {
     handleNewTicket,
   } = useGameLogic();
 
+  const totalPrize = ticketList.reduce(
+    (total, ticket) => total + ticket.prize,
+    0
+  );
+
   return (
     <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
       <div className="flex flex-col items-center mb-5">
@@ -29,12 +34,12 @@ const Lottokeeper = () => {
           </p>
           <p className="text-lg mb-2 flex items-center">
             <span className="font-semibold text-gray-700">Balance:</span>
-            <span className="ml-1 text-green-500">{playerBalance}</span>
+            <span className="ml-1 text-green-500">{playerBalance}$</span>
             <RiMoneyDollarCircleFill className="ml-1 text-green-500" />
           </p>
           <p className="text-lg mb-2 flex items-center">
             <span className="font-semibold text-gray-700">Prize:</span>
-            <span className="ml-1 text-yellow-500">{prize}</span>
+            <span className="ml-1 text-yellow-500">{totalPrize}</span>
             <RiMoneyDollarCircleFill className="ml-1 text-yellow-500" />
           </p>
           <p className="text-lg mb-2 flex items-center">

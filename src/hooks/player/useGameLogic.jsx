@@ -5,8 +5,14 @@ import usePlayerInfo from "./usePlayerInfo";
 import { prizeData } from "../../utils/constants";
 
 const useGameLogic = () => {
-  const { playerName, playerBalance, setPlayerName, setPlayerBalance } =
-    usePlayerInfo();
+  const {
+    playerName: contextPlayerName,
+    playerBalance: contextPlayerBalance,
+    prize: contextPrize,
+    setPlayerName,
+    setBalance: setPlayerBalanceContext,
+    updatePrize,
+  } = usePlayerInfo();
 
   const {
     selectedNumbers,
@@ -47,17 +53,17 @@ const useGameLogic = () => {
       return;
     }
 
-    const tmp = generateRandomNumbers();
-    setGeneratedNumbers(tmp);
+    const randomNum = generateRandomNumbers();
+    setGeneratedNumbers(randomNum);
 
     if (
-      playerBalance >= 500 &&
+      contextPlayerBalance >= 500 &&
       selectedNumbers.length === 5 &&
       !hasResult &&
       !numbersGenerated
     ) {
       const matchingNumbersCount = selectedNumbers.filter((num) =>
-        tmp.includes(num)
+        randomNum.includes(num)
       ).length;
 
       const currentPrize = prizeData[matchingNumbersCount] || 0;
@@ -70,11 +76,14 @@ const useGameLogic = () => {
 
       setTicketList([...ticketList, newTicket]);
 
-      setPlayerBalance(playerBalance + currentPrize - 500);
+      setPlayerBalanceContext(contextPlayerBalance + currentPrize - 500);
       setHasResult(true);
       setSelectedNumbers([]);
       setIsGeneratingNumbers(true);
       setNumbersGenerated(true);
+
+      // Update the prize in the player context
+      updatePrize(contextPrize + currentPrize);
     } else {
       alert("Please select exactly 5 numbers to generate your lottery ticket.");
     }
@@ -87,8 +96,8 @@ const useGameLogic = () => {
   };
 
   return {
-    playerName,
-    playerBalance,
+    playerName: contextPlayerName,
+    playerBalance: contextPlayerBalance,
     selectedNumbers,
     prize,
     ticketList,
@@ -96,7 +105,7 @@ const useGameLogic = () => {
     hasResult,
     setHasResult,
     setPlayerName,
-    setPlayerBalance,
+    setBalance: setPlayerBalanceContext,
     setSelectedNumbers,
     setGeneratedNumbers,
     setPrize,
