@@ -8,13 +8,18 @@ const Lottokeeper = () => {
     playerBalance,
     selectedNumbers,
     ticketList,
-    totalPrize,
     generatedNumbers,
     hasResult,
     handleSelectNumber,
     handleGenerateNumbers,
     handleNewTicket,
+    handleRestartGame, // New function for restarting the game
   } = useGameLogic();
+
+  const totalPrize = ticketList.reduce(
+    (total, ticket) => total + ticket.prize,
+    0
+  );
 
   return (
     <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
@@ -86,10 +91,18 @@ const Lottokeeper = () => {
         </button>
         {hasResult && (
           <button
-            className="bg-blue-500 text-white p-2 rounded"
+            className="bg-blue-500 text-white p-2 rounded mr-4"
             onClick={handleNewTicket}
           >
             New Ticket
+          </button>
+        )}
+        {playerBalance === 0 && (
+          <button
+            className="bg-red-500 text-white p-2 rounded"
+            onClick={handleRestartGame}
+          >
+            Restart Game
           </button>
         )}
       </div>

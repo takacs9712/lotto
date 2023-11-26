@@ -56,9 +56,31 @@ const useGameLogic = () => {
     }
   };
 
+  const handleRestartGame = () => {
+    setNumbersGenerated(false);
+    setHasResult(false);
+    setIsGeneratingNumbers(false);
+    setSelectedNumbers([]);
+    setGeneratedNumbers([]);
+    setPrize(0);
+    setTicketList([]);
+
+    setPlayerBalanceContext(10000);
+  };
+
   const handleGenerateNumbers = () => {
     if (isGeneratingNumbers || numbersGenerated) {
       alert("You have already generated numbers for this ticket.");
+      return;
+    }
+
+    if (contextPlayerBalance < 500) {
+      const restartGame = window.confirm(
+        "Insufficient balance. Do you want to restart the game?"
+      );
+      if (restartGame) {
+        handleRestartGame();
+      }
       return;
     }
 
@@ -125,6 +147,7 @@ const useGameLogic = () => {
     setTicketList,
     handleSelectNumber,
     handleGenerateNumbers,
+    handleRestartGame,
     handleNewTicket,
   };
 };
