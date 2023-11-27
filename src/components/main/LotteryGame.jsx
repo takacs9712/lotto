@@ -20,31 +20,33 @@ const Lottokeeper = () => {
   return (
     <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
       <div className="flex flex-col items-center mb-5">
-        <h2 className="text-4xl font-extrabold mb-4 ">Player Details</h2>
+        <h2 className="text-4xl font-extrabold mb-4 text-blue-700">
+          Player Details
+        </h2>
 
-        <div className="bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-800 p-8 rounded-md shadow-lg w-full">
-          <p className="text-xl mb-4 text-white">
+        <div className="bg-sky-50 p-8 rounded-md shadow-lg w-full">
+          <p className="text-xl mb-4 text-blue-800">
             <span className="font-semibold">Player:</span> {playerName}
           </p>
-          <p className="text-xl mb-4 flex items-center text-white">
+          <p className="text-xl mb-4 flex items-center text-blue-800">
             <span className="font-semibold">Balance:</span>
-            <span className="ml-2 text-green-400">${playerBalance}</span>
-            <RiMoneyDollarCircleFill className="ml-2 text-green-400" />
+            <span className="ml-2 text-green-600">${playerBalance}</span>
+            <RiMoneyDollarCircleFill className="ml-2 text-green-600" />
           </p>
-          <p className="text-xl mb-4 flex items-center text-white">
+          <p className="text-xl mb-4 flex items-center text-blue-800">
             <span className="font-semibold">Prize:</span>
-            <span className="ml-2 text-yellow-400">${totalPrize}</span>
-            <RiMoneyDollarCircleFill className="ml-2 text-yellow-400" />
+            <span className="ml-2 text-yellow-600">${totalPrize}</span>
+            <RiMoneyDollarCircleFill className="ml-2 text-yellow-600" />
           </p>
-          <p className="text-xl mb-4 text-white">
+          <p className="text-xl mb-4 text-blue-800">
             <span className="font-semibold">Selected Numbers:</span>{" "}
-            <span className="text-yellow-300">
+            <span className="text-yellow-600">
               {selectedNumbers.join(", ")}
             </span>
           </p>
           <div className="text-xl">
             <div className="flex items-center mb-4">
-              <span className="font-semibold text-white mr-2">
+              <span className="font-semibold text-blue-800 mr-2">
                 Winning Numbers:
               </span>
               {hasResult && (
@@ -52,7 +54,7 @@ const Lottokeeper = () => {
                   {generatedNumbers.map((num) => (
                     <div
                       key={num}
-                      className="bg-yellow-400 text-black font-bold rounded-full w-10 h-10 flex items-center justify-center mx-1 border-1  hover:bg-yellow-500 hover:border-yellow-300  transition duration-500 ease-in-out"
+                      className="bg-blue-500 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mx-1   hover:bg-yellow-400 hover:border-yellow-500  transition duration-500 ease-in-out"
                     >
                       {num}
                     </div>
