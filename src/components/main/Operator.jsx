@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Ticket from "./Ticket";
+import Ticket from "../Ticket";
 import useRandomNumbers from "../../hooks/operator/useRandomNumbers";
 import useMatchesCalculator from "../../hooks/operator/useMatchesCalculator";
 import useDrawNumbers from "../../hooks/operator/useDrawNumbers";
@@ -100,6 +100,51 @@ const Operator = () => {
     });
   };
 
+  const submitTicket = () => {
+    const remainingTickets = simulatedPlayers.length - submittedTickets.length;
+
+    if (remainingTickets > 0) {
+      const newSubmittedTickets = simulatedPlayers
+        .slice(0, remainingTickets)
+        .map((player) => ({
+          numbers: player.numbers,
+          price: player.price,
+          generated: false,
+        }));
+
+      setSubmittedTickets([...submittedTickets, ...newSubmittedTickets]);
+      setBalance((prevBalance) => prevBalance + 0);
+    } else {
+      alert("All generated tickets have been submitted.");
+    }
+  };
+
+  const drawNumbersHandler = () => {
+    const submittedAndNotDrawnTickets = submittedTickets.filter(
+      (ticket) => !ticket.generated
+    );
+
+    if (submittedAndNotDrawnTickets.length > 0) {
+      const drawnNumbers = generateRandomNumbers();
+      console.log("Drawn Numbers:", drawnNumbers);
+
+      const updatedSubmittedTickets = submittedTickets.map((ticket) =>
+        ticket.generated ? ticket : { ...ticket, generated: true }
+      );
+      setSubmittedTickets(updatedSubmittedTickets);
+
+      drawNumbers(
+        updatedSubmittedTickets,
+        setResults,
+        setOperatorBalance,
+        setPrizesToPay,
+        numberOfTickets
+      );
+    } else {
+      alert("No more tickets to draw.");
+    }
+  };
+
   return (
     <div className="container mx-auto my-8 p-6 bg-gray-200 rounded-md">
       <h2 className="text-2xl font-bold mb-4">Operator</h2>
@@ -156,16 +201,7 @@ const Operator = () => {
       <div className="mt-8">
         <h3 className="text-lg font-semibold mb-2">Submitted Tickets:</h3>
         <button
-          onClick={() => {
-            const newTicket = {
-              numbers: generateRandomNumbers(),
-              price: 500,
-              generated: false,
-            };
-
-            setSubmittedTickets([...submittedTickets, newTicket]);
-            setBalance((prevBalance) => prevBalance + 500);
-          }}
+          onClick={submitTicket}
           className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:border-green-300"
         >
           Submit Ticket
@@ -230,15 +266,7 @@ const Operator = () => {
       <div className="mt-8">
         <h3 className="text-lg font-semibold mb-2">Draw Numbers:</h3>
         <button
-          onClick={() =>
-            drawNumbers(
-              submittedTickets,
-              setResults,
-              setOperatorBalance,
-              setPrizesToPay,
-              numberOfTickets
-            )
-          }
+          onClick={drawNumbersHandler}
           className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring focus:border-yellow-300"
         >
           Draw Numbers

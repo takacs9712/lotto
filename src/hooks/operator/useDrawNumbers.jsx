@@ -16,7 +16,7 @@ const useDrawNumbers = () => {
       submittedTickets.map((ticket) => ticket.numbers),
       drawnNumbers
     );
-    const operatorProfit = totalPayout - totalPayout;
+    const operatorProfit = numberOfTickets * 500 - totalPayout;
     setResults({
       fiveMatches: matchingCounts[5],
       fourMatches: matchingCounts[4],
@@ -28,8 +28,8 @@ const useDrawNumbers = () => {
       operatorProfit: operatorProfit,
     });
 
-    setBalance((prevBalance) => prevBalance - totalPayout);
-    setPrizesToPay((prevPrizesToPay) => prevPrizesToPay + totalPayout);
+    setBalance((prevBalance) => prevBalance + totalPayout);
+    setPrizesToPay((prevPrizesToPay) => totalPayout - prevPrizesToPay);
   };
 
   return drawNumbers;
