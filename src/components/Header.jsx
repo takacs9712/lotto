@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import lottery from "../assets/lottery.png";
+import { AboutButton, HomeButton, HomeIcon } from "./Buttons";
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -13,19 +13,7 @@ const Header = () => {
   return (
     <header className="bg-gray-800 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center text-2xl font-bold">
-          <img
-            src={lottery}
-            alt="lotto"
-            style={{
-              width: "40px",
-              height: "40px",
-              marginRight: "10px",
-            }}
-          />
-          Lottokeeper
-        </Link>
-
+        <HomeIcon />
         <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
           <svg
             className="w-6 h-6"
@@ -42,22 +30,10 @@ const Header = () => {
             ></path>
           </svg>
         </div>
-
         <nav className="hidden md:flex items-center space-x-4">
-          <Link
-            to="/"
-            className="tbg-transparent hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-          >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            About the game
-          </Link>
+          <HomeButton />
+          <AboutButton />
         </nav>
-
         {isMenuOpen && (
           <div className="md:hidden absolute top-16 right-4 bg-gray-800 p-4 rounded shadow">
             <Link

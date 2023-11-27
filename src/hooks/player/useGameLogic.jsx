@@ -66,6 +66,7 @@ const useGameLogic = () => {
     setTicketList([]);
 
     setPlayerBalanceContext(10000);
+    updateTotalPrize(0);
   };
 
   const handleGenerateNumbers = () => {
@@ -132,6 +133,7 @@ const useGameLogic = () => {
   return {
     playerName: contextPlayerName,
     playerBalance: contextPlayerBalance,
+    updateTotalPrize,
     selectedNumbers,
     prize,
     ticketList,

@@ -10,65 +10,60 @@ const Lottokeeper = () => {
     ticketList,
     generatedNumbers,
     hasResult,
+    totalPrize,
     handleSelectNumber,
     handleGenerateNumbers,
     handleNewTicket,
-    handleRestartGame, // New function for restarting the game
+    handleRestartGame,
   } = useGameLogic();
-
-  const totalPrize = ticketList.reduce(
-    (total, ticket) => total + ticket.prize,
-    0
-  );
 
   return (
     <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
       <div className="flex flex-col items-center mb-5">
-        <h2 className="text-3xl font-extrabold mb-4 text-indigo-700">
-          Player Dashboard
-        </h2>
-        <div className="bg-white p-6 rounded-md shadow-md w-full">
-          <p className="text-lg mb-2">
-            <span className="font-semibold text-gray-700">Player:</span>{" "}
-            {playerName}
+        <h2 className="text-4xl font-extrabold mb-4 ">Player Details</h2>
+
+        <div className="bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-800 p-8 rounded-md shadow-lg w-full">
+          <p className="text-xl mb-4 text-white">
+            <span className="font-semibold">Player:</span> {playerName}
           </p>
-          <p className="text-lg mb-2 flex items-center">
-            <span className="font-semibold text-gray-700">Balance:</span>
-            <span className="ml-1 text-green-500">{playerBalance}$</span>
-            <RiMoneyDollarCircleFill className="ml-1 text-green-500" />
+          <p className="text-xl mb-4 flex items-center text-white">
+            <span className="font-semibold">Balance:</span>
+            <span className="ml-2 text-green-400">${playerBalance}</span>
+            <RiMoneyDollarCircleFill className="ml-2 text-green-400" />
           </p>
-          <p className="text-lg mb-2 flex items-center">
-            <span className="font-semibold text-gray-700">Prize:</span>
-            <span className="ml-1 text-yellow-500">{totalPrize}</span>
-            <RiMoneyDollarCircleFill className="ml-1 text-yellow-500" />
+          <p className="text-xl mb-4 flex items-center text-white">
+            <span className="font-semibold">Prize:</span>
+            <span className="ml-2 text-yellow-400">${totalPrize}</span>
+            <RiMoneyDollarCircleFill className="ml-2 text-yellow-400" />
           </p>
-          <p className="text-lg mb-2 flex items-center">
-            <span className="font-semibold text-gray-700">
-              Selected Numbers:
-            </span>{" "}
-            <span className="text-indigo-500">
+          <p className="text-xl mb-4 text-white">
+            <span className="font-semibold">Selected Numbers:</span>{" "}
+            <span className="text-yellow-300">
               {selectedNumbers.join(", ")}
             </span>
           </p>
-          <div className="text-lg">
-            <span className="font-semibold text-gray-700">
-              Winning Numbers:
-            </span>
-            {hasResult && (
-              <div className="flex flex-wrap justify-left mt-4">
-                {generatedNumbers.map((num) => (
-                  <div
-                    key={num}
-                    className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center mx-2 my-2 border-2 border-blue-600 hover:bg-blue-700 hover:text-yellow-300 transition duration-300 ease-in-out"
-                  >
-                    {num}
-                  </div>
-                ))}
-              </div>
-            )}
+          <div className="text-xl">
+            <div className="flex items-center mb-4">
+              <span className="font-semibold text-white mr-2">
+                Winning Numbers:
+              </span>
+              {hasResult && (
+                <div className="flex flex-wrap justify-center">
+                  {generatedNumbers.map((num) => (
+                    <div
+                      key={num}
+                      className="bg-yellow-400 text-black font-bold rounded-full w-10 h-10 flex items-center justify-center mx-1 border-1  hover:bg-yellow-500 hover:border-yellow-300  transition duration-500 ease-in-out"
+                    >
+                      {num}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
+
       <div className="grid grid-cols-6 gap-4">
         {[...Array(39).keys()].map((num) => (
           <button
