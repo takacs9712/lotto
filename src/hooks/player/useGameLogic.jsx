@@ -51,7 +51,11 @@ const useGameLogic = () => {
   };
 
   const handleSelectNumber = (number) => {
-    if (selectedNumbers.length < 5 && !selectedNumbers.includes(number)) {
+    if (selectedNumbers.includes(number)) {
+      setSelectedNumbers(
+        selectedNumbers.filter((selectedNumber) => selectedNumber !== number)
+      );
+    } else if (selectedNumbers.length < 5) {
       setSelectedNumbers([...selectedNumbers, number]);
     }
   };

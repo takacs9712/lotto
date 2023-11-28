@@ -20,10 +20,11 @@ const Lottokeeper = () => {
   return (
     <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
       <div className="flex flex-col items-center mb-5">
-        <h2 className="text-4xl font-extrabold mb-4 text-blue-700">
-          Player Details
-        </h2>
-
+        <div className="flex justify-center bg-sky-50 pt-2 rounded-md shadow-lg w-full">
+          <h2 className="text-4xl font-extrabold mb-4 text-blue-700">
+            Player Details
+          </h2>
+        </div>
         <div className="bg-sky-50 p-8 rounded-md shadow-lg w-full">
           <p className="text-xl mb-4 text-blue-800">
             <span className="font-semibold">Player:</span> {playerName}
@@ -50,11 +51,11 @@ const Lottokeeper = () => {
                 Winning Numbers:
               </span>
               {hasResult && (
-                <div className="flex flex-wrap justify-center">
+                <div className="flex justify-center text-sm">
                   {generatedNumbers.map((num) => (
                     <div
                       key={num}
-                      className="bg-blue-500 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mx-1   hover:bg-yellow-400 hover:border-yellow-500  transition duration-500 ease-in-out"
+                      className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mx-1 border-2 border-blue-600 hover:bg-blue-700 hover:text-yellow-300 transition duration-300 ease-in-out"
                     >
                       {num}
                     </div>
