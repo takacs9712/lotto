@@ -7,7 +7,7 @@ const useDrawNumbers = () => {
   const drawNumbers = (
     submittedTickets,
     setResults,
-    setBalance,
+    setOperatorBalance,
     setPrizesToPay,
     numberOfTickets
   ) => {
@@ -28,7 +28,7 @@ const useDrawNumbers = () => {
       operatorProfit: operatorProfit,
     });
 
-    setBalance((prevBalance) => prevBalance + totalPayout);
+    setOperatorBalance((prevBalance) => prevBalance - totalPayout);
     setPrizesToPay((prevPrizesToPay) => totalPayout - prevPrizesToPay);
   };
 
