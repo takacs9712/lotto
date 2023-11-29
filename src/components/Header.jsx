@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { AboutButton, HomeButton, HomeIcon } from "./Buttons";
+import { AboutButton } from "./Buttons/AboutButton";
+import { HomeButton } from "./Buttons/HomeButton";
+import { HomeIcon } from "./Buttons/HomeIcon";
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
