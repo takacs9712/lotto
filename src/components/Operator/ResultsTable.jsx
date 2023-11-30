@@ -70,7 +70,7 @@ const ResultsTable = ({ results }) => (
           >
             Total Payout:
           </td>
-          <td className="border border-gray-300 py-2 px-4 font-semibold">
+          <td className="border border-gray-300 py-2 px-4 font-semibold text-red-500">
             ${results.totalPayout}
           </td>
         </tr>
@@ -92,7 +92,7 @@ const ResultsTable = ({ results }) => (
           >
             Operator Profit:
           </td>
-          <td className="border border-gray-300 py-2 px-4 font-semibold">
+          <td className="border border-gray-300 py-2 px-4 font-semibold text-green-600">
             ${results.operatorProfit}
           </td>
         </tr>

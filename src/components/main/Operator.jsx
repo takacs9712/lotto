@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Ticket from "../Ticket";
 import useRandomNumbers from "../../hooks/operator/useRandomNumbers";
 import useMatchesCalculator from "../../hooks/operator/useMatchesCalculator";
 import useDrawNumbers from "../../hooks/operator/useDrawNumbers";
 import ResultsTable from "../Operator/ResultsTable";
+import SimulatedPlayersList from "../Operator/SimulatedPlayersList";
+import SubmittedTicketsTable from "../Operator/SubmittedTicketsTable";
+import DrawNumbersSection from "../Operator/DrawNumbersSection";
 
 const Operator = () => {
   const generateRandomNumbers = useRandomNumbers();
@@ -183,19 +185,7 @@ const Operator = () => {
           Generate Tickets
         </button>
       </div>
-      <div>
-        <h3 className="text-lg font-semibold mb-2">Simulated Players:</h3>
-        <ul>
-          {simulatedPlayers.map((player, index) => (
-            <Ticket
-              key={index}
-              numbers={player.numbers}
-              price={player.price}
-              generated={player.generated}
-            />
-          ))}
-        </ul>
-      </div>
+      <SimulatedPlayersList simulatedPlayers={simulatedPlayers} />
       <div className="mt-8">
         <h3 className="text-lg font-semibold mb-2">Submitted Tickets:</h3>
         <button
@@ -210,67 +200,17 @@ const Operator = () => {
         >
           Reset Game
         </button>
-        <table className="mt-4 w-full border-collapse border border-gray-800">
-          <thead>
-            <tr>
-              <th
-                onClick={() => handleSort("numbers")}
-                className="py-2 px-4 bg-gray-800 text-white cursor-pointer"
-              >
-                Numbers
-              </th>
-              <th
-                onClick={() => handleSort("matches")}
-                className="py-2 px-4 bg-gray-800 text-white cursor-pointer"
-              >
-                Matches
-              </th>
-              <th
-                onClick={() => handleSort("payout")}
-                className="py-2 px-4 bg-gray-800 text-white cursor-pointer"
-              >
-                Payout
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortTickets().map((ticket, index) => (
-              <tr key={index} className="border border-gray-800">
-                <td className="py-2 px-4">{ticket.numbers.join(", ")}</td>
-                <td className="py-2 px-4">
-                  {
-                    calculateMatches(ticket.numbers, generateRandomNumbers())
-                      .matchingCounts[5]
-                  }
-                </td>
-                <td className="py-2 px-4">
-                  {
-                    calculateMatches(ticket.numbers, generateRandomNumbers())
-                      .totalPayout
-                  }
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+        <SubmittedTicketsTable
+          tickets={sortTickets()}
+          handleSort={handleSort}
+        />
       </div>
-      <div className="mt-8">
-        <h3 className="text-lg font-semibold mb-2">Draw Numbers:</h3>
-        <button
-          onClick={drawNumbersHandler}
-          className={`${
-            numbersDrawn ? "bg-gray-500" : "bg-yellow-500"
-          } text-white px-4 py-2 rounded-md ${
-            numbersDrawn ? "cursor-not-allowed" : "hover:bg-yellow-700"
-          } focus:outline-none focus:ring ${
-            numbersDrawn ? "focus:border-gray-300" : "focus:border-yellow-300"
-          }`}
-          disabled={numbersDrawn}
-        >
-          {numbersDrawn ? "Numbers Drawn" : "Draw Numbers"}
-        </button>
-        <p className="mt-2">Prizes to Pay: ${prizesToPay}</p>
-      </div>
+      <DrawNumbersSection
+        numbersDrawn={numbersDrawn}
+        prizesToPay={prizesToPay}
+        drawNumbersHandler={drawNumbersHandler}
+      />
       <ResultsTable results={results} />
     </div>
   );
