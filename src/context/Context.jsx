@@ -5,7 +5,7 @@ const CookieContext = createContext();
 
 export const CookieProvider = ({ children }) => {
   const [playerName, setPlayerName] = useState("");
-  const [playerBalance, setPlayerBalance] = useState(0);
+  const [playerBalance, setPlayerBalance] = useState(10000);
   const [prize, setPrize] = useState(0);
   const [totalPrize, setTotalPrize] = useState(0);
 
