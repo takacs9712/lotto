@@ -20,7 +20,12 @@ const DrawNumbersSection = ({
     >
       {numbersDrawn ? "Numbers Drawn" : "Draw Numbers"}
     </button>
-    <p className="mt-2">Prizes to Pay: ${prizesToPay}</p>
+    {numbersDrawn && prizesToPay === 0 && (
+      <p className="mt-2">Sorry, you did not win this time</p>
+    )}
+    {numbersDrawn && prizesToPay !== 0 && (
+      <p className="mt-2">Prizes to Pay: ${prizesToPay}</p>
+    )}
   </div>
 );
 

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCookie } from "../../context/useCookies";
 
 const ResultsTable = ({ results }) => {
   const [savedResults, setSavedResults] = useCookie("lottoResults", results);
 
+  const [saveButtonDisabled, setSaveButtonDisabled] = useState(false);
+
   const saveResultsToCookies = () => {
     setSavedResults(results);
     console.log("Results saved to cookies:", results);
+    setSaveButtonDisabled(true);
+    console.log("Button Disabled:", saveButtonDisabled);
   };
 
   return (
@@ -120,8 +124,13 @@ const ResultsTable = ({ results }) => {
         </tfoot>
       </table>
       <button
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+        className={`mt-4 bg-blue-500 text-white py-2 px-4 rounded ${
+          saveButtonDisabled
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
+        }`}
         onClick={saveResultsToCookies}
+        disabled={saveButtonDisabled}
       >
         Save Results
       </button>
