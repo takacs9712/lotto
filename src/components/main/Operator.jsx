@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useRandomNumbers from "../../hooks/operator/useRandomNumbers";
 import useMatchesCalculator from "../../hooks/operator/useMatchesCalculator";
 import useDrawNumbers from "../../hooks/operator/useDrawNumbers";
@@ -6,6 +6,7 @@ import ResultsTable from "../Operator/ResultsTable";
 import SimulatedPlayersList from "../Operator/SimulatedPlayersList";
 import SubmittedTicketsTable from "../Operator/SubmittedTicketsTable";
 import DrawNumbersSection from "../Operator/DrawNumbersSection";
+import { useCookie } from "../../context/useCookies";
 
 const Operator = () => {
   const generateRandomNumbers = useRandomNumbers();
@@ -24,6 +25,7 @@ const Operator = () => {
     fourMatches: 0,
     threeMatches: 0,
     twoMatches: 0,
+    oneMatches: 0,
     noMatches: 0,
     totalRevenue: 0,
     totalPayout: 0,
@@ -33,6 +35,12 @@ const Operator = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
   const [numbersDrawn, setNumbersDrawn] = useState(false);
+
+  const [savedResults, setSavedResults] = useCookie("lottoResults", results);
+
+  useEffect(() => {
+    setResults(savedResults);
+  }, [savedResults]);
 
   const handleSort = (column) => {
     if (sortBy === column) {
@@ -146,6 +154,7 @@ const Operator = () => {
     } else {
       alert("Numbers already drawn. Please reset the game.");
     }
+    setSavedResults(results);
   };
 
   return (

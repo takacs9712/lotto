@@ -1,8 +1,19 @@
-# React + Vite
+# Liftkeeper Homework Documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Overview
 
-Currently, two official plugins are available:
+A Frontend application that manages, simulates a Lotto game, as a Player or Operator, choose your role. The frontend is developed using React + Vite with JavaScript and for styling, Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+
+## 🌐 Setup
+
+Navigate to the Lottokeeper directory and execute:
+
+```
+cd Lottokeeper
+npm install
+npm run dev
+```
+
+The application runs at: http://localhost:5174
