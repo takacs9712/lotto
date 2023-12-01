@@ -8,6 +8,9 @@ import Layout from "./layout/Layout";
 import RootLayout from "./pages/Root";
 import { CookieProvider } from "./context/Context";
 import About from "./pages/About";
+import { inject } from "@vercel/analytics";
+
+inject();
 
 const router = createBrowserRouter([
   {
