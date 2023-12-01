@@ -28,7 +28,10 @@ function App() {
   return (
     <CookieProvider>
       <Layout>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}>
+          {" "}
+          <ErrorPage />
+        </RouterProvider>
       </Layout>
     </CookieProvider>
   );
