@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: "/Lottokeeper", element: <Lottokeeper /> },
       { path: "/Lottooperator", element: <Lottooperator /> },
       { path: "/about", element: <About /> },
-      { path: "*", element: <ErrorPage /> },
+      // { path: "*", element: <ErrorPage /> },
     ],
   },
 ]);
