@@ -36,13 +36,13 @@ const NameForm = ({ onSubmit }) => {
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col">
             {" "}
-            <label htmlFor="playerName" className="text-lg text-gray-300 mr-2">
+            <label htmlFor="playerName" className="text-lg text-gray-300 mb-2">
               Enter your name:
             </label>
             <input
               type="text"
               id="playerName"
-              className={`px-4 py-2 mt-2 mx-32 mb-4 bg-gray-700 text-white rounded-md 
+              className={`px-4 py-2 mb-4 bg-gray-700 text-white rounded-md 
                           focus:outline-none focus:ring focus:border-blue-300 
                           ${error ? "border-red-500" : ""}`}
               value={playerName}
@@ -64,12 +64,12 @@ const NameForm = ({ onSubmit }) => {
       ) : (
         playerName && (
           <div>
-            <h1 className="text-white mt-2 text-xl">
+            <h1 className="text-white mt-2 text-xl text-center">
               Welcome, <span className="font-bold">{playerName}!</span>
             </h1>
             <button
               onClick={handleChangeName}
-              className="text-blue-500 mt-2 cursor-pointer"
+              className="text-blue-500 mt-2 cursor-pointer mx-auto block"
             >
               Change Name
             </button>

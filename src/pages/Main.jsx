@@ -12,17 +12,17 @@ const Main = () => {
           Lottokeeper
         </h1>
         <NameForm />
-        <div className="flex flex-col md:flex-row justify-center items-center mb-8">
+        <div className="flex flex-col md:flex-row justify-center items-center flex-wrap mb-8">
           <Link
             to="/Lottokeeper"
-            className="mb-4 md:mb-0 md:mr-2 w-full md:w-auto px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition duration-300 flex items-center"
+            className="mb-4 md:mb-0 md:mr-2 w-full md:w-auto px-4 md:px-8 py-3 md:py-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition duration-300 flex items-center"
           >
             <IoPerson className="mr-2" />
             Play as Player
           </Link>
           <Link
             to="/Lottooperator"
-            className="w-full md:w-auto px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md transition duration-300 flex items-center"
+            className="w-full md:w-auto px-4 md:px-8 py-3 md:py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md transition duration-300 flex items-center"
           >
             <MdOutlinePersonalVideo className="mr-2" />
             Play as Operator
