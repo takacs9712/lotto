@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./pages/Main";
-import ErrorPage from "./pages/Error";
+import ErrorPage from "./pages/404";
 import Lottokeeper from "./pages/Lottokeeper";
 import Lottooperator from "./pages/Lottooperator";
 import Layout from "./layout/Layout";
