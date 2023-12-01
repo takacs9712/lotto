@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import { IoPerson } from "react-icons/io5";
@@ -12,12 +12,6 @@ const Main = () => {
     config: { duration: 1000 },
   });
 
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleFormSubmit = () => {
-    setFormSubmitted(true);
-  };
-
   return (
     <animated.div
       style={springProps}
@@ -27,22 +21,18 @@ const Main = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-blue-500">
           Lottokeeper
         </h1>
-        <NameForm onSubmit={handleFormSubmit} />
+        <NameForm />
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 mb-8">
           <Link
             to="/Lottokeeper"
-            className={`w-full md:w-48 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition duration-300 flex items-center ${
-              !formSubmitted ? "pointer-events-none opacity-50" : ""
-            }`}
+            className="w-full md:w-48 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition duration-300 flex items-center"
           >
             <IoPerson className="mr-2" />
             Play as Player
           </Link>
           <Link
             to="/Lottooperator"
-            className={`w-full md:w-48 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md transition duration-300 flex items-center ${
-              !formSubmitted ? "pointer-events-none opacity-50" : ""
-            }`}
+            className="w-full md:w-48 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md transition duration-300 flex items-center"
           >
             <MdOutlinePersonalVideo className="mr-2" />
             Play as Operator
