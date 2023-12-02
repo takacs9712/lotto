@@ -69,11 +69,11 @@ const ResultsTable = ({ results }) => {
             </td>
           </tr>
           <tr>
-            <td className="border border-gray-300 py-2 px-4">1 Match</td>
+            <td className="border border-gray-300 py-2 px-4">1 Matches</td>
             <td className="border border-gray-300 py-2 px-4">
-              {results.oneMatches}
+              {results.oneMatches * 0}
             </td>
-            <td className="border border-gray-300 py-2 px-4">$200</td>
+            <td className="border border-gray-300 py-2 px-4">$400</td>
             <td className="border border-gray-300 py-2 px-4">
               ${results.oneMatches * 200}
             </td>
