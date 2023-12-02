@@ -22,6 +22,7 @@ const useDrawNumbers = () => {
       fourMatches: matchingCounts[4],
       threeMatches: matchingCounts[3],
       twoMatches: matchingCounts[2],
+      oneMatches: matchingCounts[1],
       noMatches: matchingCounts[0],
       totalRevenue: numberOfTickets * 500,
       totalPayout: totalPayout,

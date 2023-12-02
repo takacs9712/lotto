@@ -94,6 +94,7 @@ const Operator = () => {
       fourMatches: 0,
       threeMatches: 0,
       twoMatches: 0,
+      oneMatches: 0,
       noMatches: 0,
       totalRevenue: 0,
       totalPayout: 0,
