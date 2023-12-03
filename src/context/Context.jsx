@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useEffect,
+  useState,
+} from "react";
 import Cookies from "js-cookie";
 
 const CookieContext = createContext();
@@ -8,26 +14,6 @@ export const CookieProvider = ({ children }) => {
   const [playerBalance, setPlayerBalance] = useState(10000);
   const [prize, setPrize] = useState(0);
   const [totalPrize, setTotalPrize] = useState(0);
-
-  useEffect(() => {
-    const storedName = Cookies.get("playerName");
-    const storedBalance = Cookies.get("playerBalance");
-    const storedPrize = Cookies.get("prize");
-    const storedTotalPrize = Cookies.get("totalPrize");
-
-    if (storedName) {
-      setPlayerName(storedName);
-    }
-    if (storedBalance) {
-      setPlayerBalance(parseFloat(storedBalance));
-    }
-    if (storedPrize) {
-      setPrize(parseFloat(storedPrize));
-    }
-    if (storedTotalPrize) {
-      setTotalPrize(parseFloat(storedTotalPrize));
-    }
-  }, []);
 
   const updatePlayerName = (name) => {
     setPlayerName(name);
@@ -49,19 +35,41 @@ export const CookieProvider = ({ children }) => {
     Cookies.set("totalPrize", totalPrizeValue, { expires: 365 });
   };
 
+  useEffect(() => {
+    const storedName = Cookies.get("playerName");
+    const storedBalance = Cookies.get("playerBalance");
+    const storedPrize = Cookies.get("prize");
+    const storedTotalPrize = Cookies.get("totalPrize");
+
+    if (storedName) {
+      setPlayerName(storedName);
+    }
+    if (storedBalance) {
+      setPlayerBalance(parseFloat(storedBalance));
+    }
+    if (storedPrize) {
+      setPrize(parseFloat(storedPrize));
+    }
+    if (storedTotalPrize) {
+      setTotalPrize(parseFloat(storedTotalPrize));
+    }
+  }, []);
+
+  const contextValue = useMemo(() => {
+    return {
+      playerName,
+      playerBalance,
+      prize,
+      totalPrize,
+      updatePlayerName,
+      updatePlayerBalance,
+      updatePrize,
+      updateTotalPrize,
+    };
+  }, [playerName, playerBalance, prize, totalPrize]);
+
   return (
-    <CookieContext.Provider
-      value={{
-        playerName,
-        playerBalance,
-        prize,
-        totalPrize,
-        updatePlayerName,
-        updatePlayerBalance,
-        updatePrize,
-        updateTotalPrize,
-      }}
-    >
+    <CookieContext.Provider value={contextValue}>
       {children}
     </CookieContext.Provider>
   );
