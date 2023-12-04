@@ -17,7 +17,7 @@ const Main = () => {
       style={springProps}
       className="flex flex-col h-screen items-center justify-center m-2 text-white"
     >
-      <div className="text-center p-6 md:p-12 bg-gray-800 rounded-md shadow-lg">
+      <div className="text-center p-6 md:p-12 bg-gray-800/90 rounded-md shadow-lg">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-blue-500">
           Lottokeeper
         </h1>

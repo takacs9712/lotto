@@ -1,9 +1,11 @@
 import React from "react";
-import bcg from "../assets/bcg.jpg";
+// import bcg from "../assets/bcg.jpg";
+
+import backgr from "../assets/backgr.jpg";
 
 const Layout = ({ children }) => {
   const backgroundStyle = {
-    backgroundImage: `url(${bcg})`,
+    backgroundImage: `url(${backgr})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
