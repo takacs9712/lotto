@@ -21,7 +21,7 @@ const Lottokeeper = () => {
   } = useGameLogic();
 
   return (
-    <div className="container mx-auto p-4 bg-white m-6 rounded-lg">
+    <div className="container mx-auto p-4 bg-gray-100 m-6 rounded-lg">
       <PlayerDetails
         playerName={playerName}
         playerBalance={playerBalance}

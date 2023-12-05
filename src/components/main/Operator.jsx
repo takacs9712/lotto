@@ -158,7 +158,7 @@ const Operator = () => {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-gray-200 rounded-md">
+    <div className="container mx-auto p-4 bg-gray-100 m-6 rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Operator</h2>
       <p className="text-lg mb-4">Balance: ${balance}</p>
       <div className="mb-8">

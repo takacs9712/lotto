@@ -4,7 +4,7 @@ const NumberButton = ({ number, isSelected, onClick }) => {
   return (
     <button
       className={`border p-2 rounded ${
-        isSelected ? "bg-blue-500 text-white" : ""
+        isSelected ? "bg-blue-500 text-white" : "bg-white border border-black"
       }`}
       onClick={onClick}
     >

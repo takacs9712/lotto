@@ -10,6 +10,10 @@ const NumberGrid = ({ selectedNumbers, handleSelectNumber }) => {
           number={num + 1}
           isSelected={selectedNumbers.includes(num + 1)}
           onClick={() => handleSelectNumber(num + 1)}
+          style={{
+            backgroundColor: "white",
+            border: "1px solid black",
+          }}
         />
       ))}
     </div>

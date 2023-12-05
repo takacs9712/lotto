@@ -10,7 +10,7 @@ const PlayerDetails = ({
   generatedNumbers,
 }) => {
   return (
-    <div className="bg-sky-50 p-8 rounded-md shadow-lg w-full">
+    <div className="bg-gray-100 p-8 rounded-sm shadow-md w-full">
       <h2 className=" flex justify-center text-4xl font-extrabold mb-4 text-blue-700">
         Player Details
       </h2>
